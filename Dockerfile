@@ -85,6 +85,9 @@ ADD     ./grafana/dashboard-loader/dashboard-loader.js /src/dashboard-loader/
 ADD     ./nginx/nginx.conf /etc/nginx/nginx.conf
 ADD     ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Symbolic link custom scripted dashboard location to mounted volume
+ADD     ./customdash.sh /opt/grafana/bin/
+
 
 # ---------------- #
 #   Expose Ports   #
@@ -92,6 +95,9 @@ ADD     ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Grafana
 EXPOSE  80
+EXPOSE 2003
+EXPOSE 2004
+EXPOSE 7002
 
 # StatsD UDP port
 EXPOSE  8125/udp
